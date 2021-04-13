@@ -9,7 +9,7 @@ suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
 	test('Sample test', async () => {
-		await vscode.commands.executeCommand("onCommand:vscode-repro-git-windows-insiders-unresponsive.helloWorld");
+		await vscode.commands.executeCommand("vscode-repro-git-windows-insiders-unresponsive.helloWorld");
 		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
 		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
 	});
