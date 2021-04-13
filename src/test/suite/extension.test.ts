@@ -8,7 +8,8 @@ import * as vscode from 'vscode';
 suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
+	test('Sample test', async () => {
+		await vscode.commands.executeCommand("onCommand:vscode-repro-git-windows-insiders-unresponsive.helloWorld");
 		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
 		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
 	});
