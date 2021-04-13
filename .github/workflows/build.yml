@@ -1,0 +1,46 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+
+    name: "${{ matrix.os }}"
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        node-version: [10]
+
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - name: Setup XVFB
+        if: matrix.os == 'ubuntu-latest'
+        run: Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+      - name: Setup Node v${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Setup Flutter
+        id: flutter
+        uses: DanTup/gh-actions/setup-flutter@v1.1.0
+
+      - run: flutter update-packages
+
+      - name: npm install
+        run: npm install
+
+      - name: npm test
+        run: npm test
+        env:
+          CI: true
+          ELECTRON_NO_ATTACH_CONSOLE: 1
+          DISPLAY: ":99.0"
+          FLUTTER_REPO_PATH: ${{ steps.flutter.outputs.flutter-sdk }}
+
