@@ -30,6 +30,8 @@ jobs:
       - name: Setup Flutter
         id: flutter
         uses: DanTup/gh-actions/setup-flutter@v1.1.0
+        with:
+          channel: dev
 
       - run: flutter update-packages
 
