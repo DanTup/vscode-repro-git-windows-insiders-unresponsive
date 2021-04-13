@@ -16,7 +16,17 @@ async function main() {
 		await runTests({
 			extensionDevelopmentPath,
 			extensionTestsPath,
-			launchArgs: [process.env.FLUTTER_REPO_PATH!],
+			launchArgs: [
+				process.env.FLUTTER_REPO_PATH!,
+				"--disable-extension",
+				"vscode.git",
+				"--disable-extension",
+				"vscode.git-ui",
+				"--disable-extension",
+				"vscode.github",
+				"--disable-extension",
+				"vscode.github-authentication",
+			],
 			version: 'insiders',
 		});
 	} catch (err) {
