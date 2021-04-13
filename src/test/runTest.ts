@@ -17,6 +17,7 @@ async function main() {
 			extensionDevelopmentPath,
 			extensionTestsPath,
 			launchArgs: [process.env.FLUTTER_REPO_PATH!],
+			version: 'insiders',
 		});
 	} catch (err) {
 		console.error('Failed to run tests');
